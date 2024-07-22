@@ -1,3 +1,4 @@
+const Sequelize=require("sequelize")
 module.exports = (sequelize, DataTypes) => {
     const Address = sequelize.define("Address", {
         id: {
@@ -23,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         city: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
         },
         createdAt: {
@@ -38,5 +39,11 @@ module.exports = (sequelize, DataTypes) => {
         }
 
     })
+    // const Users=require("./users")(sequelize,Sequelize)
+    // Address.belongsTo(Users,{
+    //     foreignKey:"user_id",
+    //     as : "user",
+    //     underscored : true
+    // })
     return Address
 }

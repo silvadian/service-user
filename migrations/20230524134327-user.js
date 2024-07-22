@@ -4,7 +4,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
 
-    await queryInterface.createTable('user', {
+    await queryInterface.createTable('users', {
         id: {
           type: Sequelize.INTEGER,
           primaryKey: true,
@@ -42,7 +42,7 @@ module.exports = {
         }
 
     });
-    await queryInterface.addConstraint("user", {
+    await queryInterface.addConstraint("users", {
       type: 'unique',
       fields: ["email"],
       name: "UNIQUE_USER_EMAIL"
@@ -52,7 +52,7 @@ module.exports = {
 
   async down(queryInterface, Sequelize) {
 
-    await queryInterface.dropTable('user');
+    await queryInterface.dropTable('users');
 
   }
 };

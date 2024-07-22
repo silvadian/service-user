@@ -1,5 +1,6 @@
+const Sequelize=require("sequelize")
 module.exports = (sequelize, DataTypes) => {
-    const User = sequelize.define("User", {
+    const Users = sequelize.define("Users", {
         id: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
@@ -38,5 +39,7 @@ module.exports = (sequelize, DataTypes) => {
             field: "updated_at"
         }
     })
-    return User
+    const Address=require("./Address")(sequelize,Sequelize)
+    Users.hasOne(Address, {as:"address",foreignKey:"user_id"})
+    return Users
 }

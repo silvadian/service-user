@@ -1,12 +1,11 @@
 'use strict';
 
-const { INTEGER } = require('sequelize');
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
 
-    await queryInterface.createTable('address', {
+    await queryInterface.createTable('addresses', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -30,7 +29,7 @@ module.exports = {
         allowNull: false,
       },
       city: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       created_at: {
@@ -42,19 +41,19 @@ module.exports = {
         allowNull: false
       }
     });
-    await queryInterface.addConstraint("address", {
+    await queryInterface.addConstraint("addresses", {
       type: "foreign key",
-      name: "ADDRESS_USER_ID",
+      name: "ADDRESSES_USER_ID",
       fields: ["user_id"],
       references: {
-        table: "user",
+        table: "users",
         field: "id"
       }
     })
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('address');
+    await queryInterface.dropTable('addresses');
 
   }
 };
